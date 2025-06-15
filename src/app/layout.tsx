@@ -1,9 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
+import MasterSidebar from "@/components/MasterSidebar";
+import TopBar from "@/components/TopBar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
@@ -25,9 +32,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} antialiased bg-gray-100`}
       >
-        {children}
+        <div className="flex h-screen overflow-hidden">
+          <MasterSidebar className="hidden md:block" />{" "}
+          {/* Hide on small screens, show on md and up */}
+          <div className="flex-1 flex flex-col overflow-hidden">
+            <TopBar />
+            {/* Adjust padding for different screen sizes */}
+            <main className="flex-1 overflow-y-auto bg-[#F7F7F7] p-4 md:p-7">
+              {children}
+            </main>
+          </div>
+        </div>
       </body>
     </html>
   );
