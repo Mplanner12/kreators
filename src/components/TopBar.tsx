@@ -25,23 +25,23 @@ const TopBar = () => {
         {/* Search Container - flex-1 allows it to take space, min-w-0 allows shrinking */}
         <div className="relative flex-1 min-w-0 max-w-[120px] sm:max-w-[180px] md:max-w-xs">
           <Search
-            className="absolute left-2 sm:left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+            className="absolute left-2 sm:left-3 top-1/2 transform -translate-y-1/2 text-[#667085]"
             size={15}
           />
           <input
             type="search"
             placeholder="Search"
-            className="pl-7 sm:pl-9 pr-2 sm:pr-4 py-1.5 sm:py-2 w-full rounded-md border border-gray-300 bg-gray-100 focus:ring-indigo-500 focus:border-indigo-500 text-xs sm:text-sm placeholder:text-[#667085]"
+            className="pl-7 sm:pl-9 pr-2 sm:pr-4 py-1.5 sm:py-2 w-full rounded-md border border-gray-300 bg-gray-100 focus:ring-[#667085] focus:border-[#667085] text-xs sm:text-sm text-[#667085] placeholder:text-[#667085] outline-none"
           />
         </div>
 
         {/* Action Buttons */}
         <div className="flex items-center space-x-2 sm:space-x-3 md:space-x-4">
-          <button className="hidden lg:flex items-center bg-gray-100 border border-gray-300 rounded-md px-2 sm:px-3 py-1 sm:py-1.5 text-[#667085] hover:bg-gray-200 text-xs sm:text-[0.9rem]">
+          <button className="hidden lg:flex items-center bg-gray-100 border border-gray-300 rounded-md px-2 sm:px-3 py-1 sm:py-1.5 text-[#667085] hover:bg-gray-200 text-xs sm:text-[0.9rem] cursor-pointer">
             <BarChart2 className="mr-1.5" size={18} />
             Analytics
           </button>
-          <button className="bg-gray-100 rounded-md p-1.5 sm:p-2 text-[#667085] hover:bg-gray-200">
+          <button className="bg-gray-100 rounded-md p-1.5 sm:p-2 text-[#667085] hover:bg-gray-200 cursor-pointer">
             <Bell size={18} />
           </button>
           <div className="flex items-center">
@@ -49,7 +49,7 @@ const TopBar = () => {
               <Image height={100} width={100} src="/Avatar.png" alt="" />
             </div>
             <IoIosArrowDown
-              className="text-gray-400 ml-0.5 sm:ml-1"
+              className="text-gray-400 ml-0.5 sm:ml-1 cursor-pointer"
               size={16}
             />
           </div>
