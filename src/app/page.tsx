@@ -1,9 +1,10 @@
 "use client";
-import React, { useState } from "react";
+import React from "react"; // Removed useState
 import Sidebar, {
   navItems as templateNavItems,
 } from "../components/TemplateLibrary/Sidebar";
 
+import { useNavigation } from "@/contexts/NavigationContext";
 import BrandIdentityKit from "../components/TemplateLibrary/BrandIdentityKit";
 import { Construction, Plus } from "lucide-react";
 
@@ -20,10 +21,8 @@ const VIEW_IDS = {
 };
 
 const TemplateLibraryPage = () => {
-  const [activeViewId, setActiveViewId] = useState<string>(
-    VIEW_IDS.TEMPLATES_LIBRARY
-  );
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const { activeViewId, setActiveViewId } = useNavigation();
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = React.useState(false);
 
   const toggleSidebarCollapse = () => {
     setIsSidebarCollapsed((prev) => !prev);
@@ -72,6 +71,8 @@ const TemplateLibraryPage = () => {
   } else if (currentViewItem) {
     showAddNewButtonForHeader = false;
   }
+
+  if (!activeViewId) return null; // Or a loading indicator
 
   return (
     <div className="flex h-full font-sans">

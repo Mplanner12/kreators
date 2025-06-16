@@ -1,9 +1,19 @@
+"use client";
 import React from "react";
 import { Search, Bell, BarChart2 } from "lucide-react";
 import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
 import Image from "next/image";
+import { useNavigation } from "@/contexts/NavigationContext";
+import { navItems as templateNavItems } from "./TemplateLibrary/Sidebar"; // Assuming navItems are exported
 
 const TopBar = () => {
+  const { activeViewId } = useNavigation();
+
+  const activeNavItem = templateNavItems.find(
+    (item) => item.id === activeViewId
+  );
+  const breadcrumbLabel = activeNavItem ? activeNavItem.label : ""; // Default to empty or a placeholder
+
   return (
     <header className="h-fit py-4 md:py-[1.75rem] bg-white border-b border-gray-200 shadow-sm flex items-center justify-between px-4 md:px-6">
       {/* Left side - Breadcrumb Navigation */}
@@ -11,13 +21,17 @@ const TopBar = () => {
         <span className="font-[600] font-inter text-black text-base sm:text-lg md:text-xl xl:text-[1.35rem] 2xl:text-[1.65rem] whitespace-nowrap">
           Content Studio
         </span>
-        <IoIosArrowForward
-          className="text-gray-400 hidden sm:block"
-          size={20}
-        />
-        <span className="text-[#667085] font-[500] text-xs sm:text-sm whitespace-nowrap hidden sm:block">
-          Brand Identity Kit
-        </span>
+        {breadcrumbLabel && ( // Only show if there's a label
+          <>
+            <IoIosArrowForward
+              className="text-gray-400 hidden sm:block"
+              size={20}
+            />
+            <span className="text-[#667085] font-[500] text-xs sm:text-sm whitespace-nowrap hidden sm:block">
+              {breadcrumbLabel}
+            </span>
+          </>
+        )}
       </div>
 
       {/* Right side - Search,  Actions/User */}
