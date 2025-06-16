@@ -48,12 +48,11 @@ const masterNavItems: MasterNavItem[] = [
 ];
 
 interface MasterSidebarProps {
-  className?: string; // Add className as an optional prop
+  className?: string;
 }
 
 const MasterSidebar: React.FC<MasterSidebarProps> = ({ className }) => {
   return (
-    // Apply the passed className along with default classes
     <aside
       className={`w-64 h-full bg-white shadow-md flex flex-col p-4 border-r ${
         className || ""

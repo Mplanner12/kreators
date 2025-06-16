@@ -45,7 +45,6 @@ const FontEditor: React.FC<FontEditorProps> = ({
   setTypographyScale,
   fontTypeLabel,
 }) => {
-  // State to track which typography scale item is being edited
   const [editingScaleKey, setEditingScaleKey] = React.useState<
     keyof TypographyScaleState | null
   >(null);
@@ -72,7 +71,6 @@ const FontEditor: React.FC<FontEditorProps> = ({
   if (!isOpen) return null;
 
   return (
-    // Inline expandable block
     <div className="w-full bg-white py-3 px-6 rounded-b-lg border-x border-b border-gray-200 overflow-y-auto max-h-[calc(100vh-250px)] relative">
       {/* Font Family Section */}
       <div className="mb-6">
@@ -165,7 +163,6 @@ const FontEditor: React.FC<FontEditorProps> = ({
             Object.keys(typographyScale) as Array<keyof TypographyScaleState>
           ).map((key) =>
             editingScaleKey === key ? (
-              // Edit Mode
               <div
                 key={`${key}-edit`}
                 className="flex justify-between items-center p-2 bg-gray-50 rounded-md"
@@ -214,7 +211,6 @@ const FontEditor: React.FC<FontEditorProps> = ({
                 </button>
               </div>
             ) : (
-              // View Mode
               <div
                 key={key}
                 className="flex justify-between items-center p-2 hover:bg-gray-100 rounded-md cursor-default group"
@@ -246,7 +242,7 @@ const FontEditor: React.FC<FontEditorProps> = ({
       {/* The "Done" button for the entire FontEditor can be uncommented if needed */}
       {/* <div className="mt-8 flex justify-end">
         <button
-          onClick={onClose} // This "Done" button now just closes the editor
+          onClick={onClose} 
           className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 text-sm font-medium"
         >
           Done

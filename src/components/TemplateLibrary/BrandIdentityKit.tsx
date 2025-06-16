@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Plus, Pencil, Trash2, X } from "lucide-react";
+import { Plus, Pencil, Trash2, X, Info } from "lucide-react";
 import { HexColorPicker } from "react-colorful";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import FontEditor, {
@@ -7,6 +7,7 @@ import FontEditor, {
   TypographyScaleState,
   StoredTypographySettings,
 } from "./FontEditor";
+import toast from "react-hot-toast";
 
 const BRAND_COLORS_STORAGE_KEY = "brandKitUserColors";
 const TYPOGRAPHY_STORAGE_KEY = "brandKitTypography";
@@ -214,7 +215,11 @@ const BrandIdentityKit = () => {
         <div className="flex justify-between items-center mb-2">
           <h2 className="font-semibold text-lg text-black">Typography</h2>
           <button
-            onClick={() => alert("Add New Typography Slot - To be implemented")}
+            onClick={() =>
+              toast("feature to be implemented", {
+                icon: <Info size={15} className="text-blue-500" />,
+              })
+            }
             className="flex items-center gap-1.5 px-4 py-2.5 bg-gradient-to-r from-[#6C68C0] to-[#8581E7] hover:from-purple-500 hover:to-purple-600 cursor-pointer text-white text-sm font-medium rounded-lg"
           >
             <Plus size={16} />

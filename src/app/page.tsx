@@ -23,6 +23,11 @@ const TemplateLibraryPage = () => {
   const [activeViewId, setActiveViewId] = useState<string>(
     VIEW_IDS.TEMPLATES_LIBRARY
   );
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+
+  const toggleSidebarCollapse = () => {
+    setIsSidebarCollapsed((prev) => !prev);
+  };
 
   const handleAddNew = () => {
     console.log("Add New button clicked");
@@ -61,39 +66,38 @@ const TemplateLibraryPage = () => {
   );
 
   if (activeViewId === VIEW_IDS.TEMPLATES_LIBRARY) {
-    // pageTitle = "Template Library";
     showAddNewButtonForHeader = true;
   } else if (activeViewId === VIEW_IDS.BRAND_IDENTITY_KIT) {
-    // pageTitle = "Brand Identity Kit";
     showAddNewButtonForHeader = false;
   } else if (currentViewItem) {
-    // pageTitle = currentViewItem.label;
     showAddNewButtonForHeader = false;
   }
 
   return (
     <div className="flex h-full font-sans">
-      <Sidebar activeItemId={activeViewId} onItemClick={handleNavItemClick} />
-
-      {/* Adjust horizontal padding for different screen sizes */}
+      <Sidebar
+        activeItemId={activeViewId}
+        onItemClick={handleNavItemClick}
+        className="flex"
+        isCollapsed={isSidebarCollapsed}
+        onToggleCollapse={toggleSidebarCollapse}
+      />
       <main className="flex-1 px-4 md:px-8 overflow-y-auto">
-        {/* Conditionally render Header only if an "Add New" action is available for the current view */}
-        {/* The `pageTitle` is intended for the TopBar, not this specific Header component */}
         <div className="bg-[#F7F7F7]">
-          <div className="flex justify-between items-center py-4 mb-4">
-            <h1 className="text-xl font-semibold text-[#101828]">
+          {/* Header for the page content */}
+          <div className="flex flex-col sm:flex-row justify-between sm:items-center py-3 sm:py-4 mb-3 sm:mb-4 gap-2 sm:gap-0">
+            <h1 className="text-lg sm:text-xl font-semibold text-[#101828]">
               Template Library
             </h1>
             {showAddNewButtonForHeader && (
               <button
                 onClick={handleAddNew}
-                className="bg-gradient-to-r from-[#6C68C0] to-[#8581E7] hover:from-[#5753a0] hover:to-[#6a66c4] text-white font-medium rounded-lg px-4 py-2 text-sm flex items-center gap-1.5"
+                className="bg-gradient-to-r from-[#6C68C0] to-[#8581E7] hover:from-[#5753a0] hover:to-[#6a66c4] text-white font-medium rounded-lg px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm flex items-center gap-1 sm:gap-1.5 self-start sm:self-center"
               >
                 <Plus size={16} /> Add New
               </button>
             )}
           </div>
-
           {activeViewId === VIEW_IDS.TEMPLATES_LIBRARY && (
             <>
               {sections.map((sec) => (
@@ -111,22 +115,22 @@ const TemplateLibraryPage = () => {
                       </a>
                     )}
                   </div>
-                  <div className="flex space-x-4 overflow-x-auto">
-                    <div className="w-60 h-60 rounded-lg shadow-lg overflow-hidden">
+                  <div className="flex space-x-3 sm:space-x-4 overflow-x-auto pb-2">
+                    <div className="w-40 h-40 sm:w-48 sm:h-48 md:w-60 md:h-60 rounded-lg shadow-lg overflow-hidden flex-shrink-0 cursor-pointer hover:scale-105 transition-all">
                       <img
                         src={sec.imageSrc}
                         alt={`${sec.altPrefix} 1`}
                         className="object-cover w-full h-full"
                       />
                     </div>
-                    <div className="w-60 h-60 rounded-lg shadow-lg overflow-hidden">
+                    <div className="w-40 h-40 sm:w-48 sm:h-48 md:w-60 md:h-60 rounded-lg shadow-lg overflow-hidden flex-shrink-0 cursor-pointer hover:scale-105 transition-all">
                       <img
                         src={sec.imageSrc}
                         alt={`${sec.altPrefix} 2`}
                         className="object-cover w-full h-full"
                       />
                     </div>
-                    <div className="w-60 h-60 rounded-lg shadow-lg overflow-hidden">
+                    <div className="w-40 h-40 sm:w-48 sm:h-48 md:w-60 md:h-60 rounded-lg shadow-lg overflow-hidden flex-shrink-0 cursor-pointer hover:scale-105 transition-all">
                       <img
                         src={sec.imageSrc}
                         alt={`${sec.altPrefix} 3`}
@@ -142,7 +146,6 @@ const TemplateLibraryPage = () => {
 
         {activeViewId === VIEW_IDS.BRAND_IDENTITY_KIT && <BrandIdentityKit />}
 
-        {/* Placeholder for other views not yet implemented */}
         {![VIEW_IDS.TEMPLATES_LIBRARY, VIEW_IDS.BRAND_IDENTITY_KIT].includes(
           activeViewId
         ) &&

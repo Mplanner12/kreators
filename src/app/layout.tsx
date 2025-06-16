@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import MasterSidebar from "@/components/MasterSidebar";
 import TopBar from "@/components/TopBar";
+import { Toaster } from "react-hot-toast";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,6 +35,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} antialiased bg-gray-100`}
       >
+        <Toaster position="top-center" reverseOrder={false} />
         <div className="flex h-screen overflow-hidden">
           <MasterSidebar className="hidden md:block" />{" "}
           {/* Hide on small screens, show on md and up */}
