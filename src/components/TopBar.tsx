@@ -4,7 +4,7 @@ import { Search, Bell, BarChart2 } from "lucide-react";
 import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
 import Image from "next/image";
 import { useNavigation } from "@/contexts/NavigationContext";
-import { navItems as templateNavItems } from "./TemplateLibrary/Sidebar"; // Assuming navItems are exported
+import { navItems as templateNavItems } from "./TemplateLibrary/Sidebar";
 
 const TopBar = () => {
   const { activeViewId } = useNavigation();
@@ -12,7 +12,7 @@ const TopBar = () => {
   const activeNavItem = templateNavItems.find(
     (item) => item.id === activeViewId
   );
-  const breadcrumbLabel = activeNavItem ? activeNavItem.label : ""; // Default to empty or a placeholder
+  const breadcrumbLabel = activeNavItem ? activeNavItem.label : "";
 
   return (
     <header className="h-fit py-4 md:py-[1.75rem] bg-white border-b border-gray-200 shadow-sm flex items-center justify-between px-4 md:px-6">
@@ -21,7 +21,7 @@ const TopBar = () => {
         <span className="font-[600] font-inter text-black text-base sm:text-lg md:text-xl xl:text-[1.35rem] 2xl:text-[1.65rem] whitespace-nowrap">
           Content Studio
         </span>
-        {breadcrumbLabel && ( // Only show if there's a label
+        {breadcrumbLabel && (
           <>
             <IoIosArrowForward
               className="text-gray-400 hidden sm:block"
